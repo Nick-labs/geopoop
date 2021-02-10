@@ -1,23 +1,11 @@
-import pygame
-import sys
+import solution
 
-size = 640, 480
+toponym_to_find = "Канаш Москавская 19"
 
-screen = pygame.display.set_mode(size)
-screen.fill((0, 0, 0))
+coord = 47.496938, 55.507703
+span = 0.001, 0.001
+map_params = {'ll': ",".join(map(str, coord)),
+              "spn": ",".join(map(str, span))
+              }
 
-img = pygame.image.load('img.jpg')
-img = pygame.transform.scale(img, size)
-size = img.get_size()
-
-img_rect = img.get_rect(bottomright=size)
-screen.blit(img, img_rect)
-
-pygame.display.update()
-
-while 1:
-    for i in pygame.event.get():
-        if i.type == pygame.QUIT:
-            sys.exit()
-
-pygame.time.delay(20)
+solution.show_map(**map_params, map_type="sat")
